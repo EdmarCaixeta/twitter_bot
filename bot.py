@@ -1,10 +1,11 @@
 import tweepy
+from time import sleep
 
 def authentication():
-    consumer_key = "X"
-    consumer_secret = "X"
-    access_token = "X"
-    access_token_secret = "X"
+    consumer_key = ""
+    consumer_secret = ""
+    access_token = ""
+    access_token_secret = ""
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -20,11 +21,24 @@ def interact(keyword, number_of_tweets):
         except StopIteration:
             break
 
+def follow_back(application):
+    for follower in tweepy.Cursor(application.followers).items():
+        try:
+            follower.follow()
+        except tweepy.TweepError as e:
+            print(e.reason)
+        except StopIteration:
+            break
+
 if __name__ == "__main__":
     auth = authentication()
     api = tweepy.API(auth)
-    number_of_tweets = 5
+    number_of_tweets =
     search_list = []
-    for item in search_list:
-        interact(item, number_of_tweets)
-    
+    while(True):
+        follow_back(api)
+        for item in search_list:
+            interact(item, number_of_tweets)
+        print("pause")
+        sleep(1700)
+        
